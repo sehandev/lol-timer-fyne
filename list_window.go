@@ -5,7 +5,6 @@ import (
 	"fyne.io/fyne/widget"
 )
 
-// summonerName : 소환사 이름
 func newListWindow() {
 	listWindow := timerApp.NewWindow("타이머 선택")
 	listWindow.Resize(fyne.NewSize(listWindowWidth, listWindowHeight))
@@ -13,10 +12,6 @@ func newListWindow() {
 
 	// TODO : 소환사 이름으로 Riot API에서 현재 게임 정보 받아오기
 	// TODO : 강타를 든 경우에는 정글 타이머 띄우기
-
-	// Update
-	// TODO
-	// go clock.animate(listWindow.Canvas(), listWindow)
 
 	// Set search content
 	content := getListContent()
@@ -34,10 +29,13 @@ func getListContent() *widget.Box {
 
 	nameLabel := widget.NewLabel("소환사 : " + summonerName)
 
+	// 정글 타이머 버튼
 	jungleButton := widget.NewButton("정글", func() {
 		// 입력한 이름을 parameter로 넘김
 		// newJungleWindow()
 	})
+
+	// 스펠 타이머 버튼
 	spellButton := widget.NewButton("스펠", func() {
 		// 입력한 이름을 parameter로 넘김
 		// newSpellWindow()

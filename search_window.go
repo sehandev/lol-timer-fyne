@@ -33,7 +33,10 @@ func getSearchContent() *widget.Box {
 
 	// layout 1 : 소환사 이름
 	searchLabel := widget.NewLabel("소환사 이름")
-	nameEntry := widget.NewEntry()
+
+	nameEntry := newEnterEntry()
+	nameEntry.SetPlaceHolder("소환사명을 입력해주세요")
+
 	startButton := widget.NewButton("시작", func() {
 		// 입력한 이름을 parameter로 넘김
 		summonerName = nameEntry.Text
