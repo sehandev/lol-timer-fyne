@@ -6,18 +6,44 @@ import (
 	"fyne.io/fyne/widget"
 )
 
+func newSearchWindow() {
+	searchWindow := timerApp.NewWindow("질리언 타이머")
+	searchWindow.Resize(fyne.NewSize(searchWindowWidth, searchWindowHeight))
+	searchWindow.SetFixedSize(true) // 창 크기 조절 막기
+
+	// 닫을 때 작동
+	// searchWindow.SetOnClosed(func() {
+	// 	// TODO : 검색 history 저장
+	// })
+
+	// Update
+	// TODO
+	// go clock.animate(searchWindow.Canvas(), searchWindow)
+
+	// Set search content
+	content := getSearchContent()
+
+	// Run
+	searchWindow.SetContent(content)
+	searchWindow.ShowAndRun()
+}
+
 // getSearchContent returns layout
 func getSearchContent() *widget.Box {
 
 	// layout 1 : 소환사 이름
 	searchLabel := widget.NewLabel("소환사 이름")
+	nameEntry := widget.NewEntry()
 	startButton := widget.NewButton("시작", func() {
-		newListWindow("test")
+		// 입력한 이름을 parameter로 넘김
+		summonerName = nameEntry.Text
+		newListWindow()
 	})
 	startButton.Resize(fyne.NewSize(200, 100))
 
 	searchBox := widget.NewVBox(
 		searchLabel,
+		nameEntry,
 		widget.NewHBox(
 			layout.NewSpacer(),
 			startButton,
@@ -33,7 +59,8 @@ func getSearchContent() *widget.Box {
 	for _, name := range nameArr {
 		tmpButton := widget.NewButton(name, func() {
 			// TODO : 버튼마다 이름이 안되고 for문 끝났을 때의 name이 일괄 적용됨
-			newListWindow(name)
+			summonerName = name
+			newListWindow()
 		})
 		historyContainer.AddObject(tmpButton)
 	}
