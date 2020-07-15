@@ -59,10 +59,11 @@ func getSearchContent() *widget.Box {
 
 	nameArr := []string{"ABC", "D한글체크D", "세한", "여덟글자제한인데"}
 	historyContainer := fyne.NewContainerWithLayout(layout.NewAdaptiveGridLayout(2))
+
 	for _, name := range nameArr {
+		tmpName := name // button function bind를 위해 for loop 안에 변수 추가
 		tmpButton := widget.NewButton(name, func() {
-			// TODO : 버튼마다 이름이 안되고 for문 끝났을 때의 name이 일괄 적용됨
-			summonerName = name
+			summonerName = tmpName
 			newListWindow()
 		})
 		historyContainer.AddObject(tmpButton)
